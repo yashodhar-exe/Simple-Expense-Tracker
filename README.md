@@ -74,4 +74,15 @@ Before you begin, ensure you have met the following requirements:
    Open your browser and navigate to: `http://localhost:5000`
 
 ## Deployment 🌐
-This project is deployment-ready. It uses environment variables for secure connection strings and the Node server successfully serves the static frontend assets via `express.static()`. You can host the `backend` folder directly on platforms like [Render](https://render.com), [Heroku](https://heroku.com), or [Railway](https://railway.app).
+This project is configured perfectly for **Vercel** serverless deployment. Simply connect your GitHub repository to Vercel and it will automatically detect the configuration in `vercel.json`!
+
+**Vercel Deployment Steps:**
+1. Import your Simple-Expense-Tracker repository in your Vercel Dashboard.
+2. Vercel will automatically read `vercel.json` and deploy both the static frontend and the Node.js backend as a serverless function.
+3. Don't forget to navigate to your Vercel project Settings -> Environment Variables, and add the configuration for your remote MySQL Database:
+   - `DB_HOST`
+   - `DB_USER`
+   - `DB_PASSWORD`
+   - `DB_NAME`
+
+Alternatively, you could also host the `backend` folder directly on platforms like Render or Heroku.
