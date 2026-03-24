@@ -11,20 +11,17 @@ app.use(express.json());
 // Serve static frontend files
 app.use(express.static(path.join(__dirname, "../frontend")));
 
-const db = mysql.createConnection({
+const db = mysql.createPool({
   host: process.env.DB_HOST || "localhost",
   user: process.env.DB_USER || "root",
   password: process.env.DB_PASSWORD || "root",
-  database: process.env.DB_NAME || "expense_tracker"
+  database: process.env.DB_NAME || "expense_tracker",
+  waitForConnections: true,
+  connectionLimit: 10,
+  queueLimit: 0
 });
 
-db.connect(err => {
-  if (err) {
-    console.error(err);
-    return;
-  }
-  console.log("MySQL Connected");
-});
+// Database Pool automatically connects and manages connections in the background
 
 app.post("/add-expense", (req, res) => {
   console.log("REQ BODY:", req.body);  
